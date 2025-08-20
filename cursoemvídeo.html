@@ -1,1 +1,100 @@
+<!DOCTYPE html><html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Título chamativo – Feira de Ciências</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121833;
+      --ink:#e8f1ff;
+      --accent:#7cf1c8;
+      --hot:#ff6b6b;
+      --cool:#76a7ff;
+      --warn:#ffd166;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100svh; display:grid; place-items:center;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(118,167,255,.18), transparent 60%),
+                  radial-gradient(900px 500px at 10% 110%, rgba(124,241,200,.15), transparent 60%),
+                  var(--bg);
+      color:var(--ink); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    .card{
+      width:min(920px, 92vw);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 20px 60px rgba(0,0,0,.45);
+      border-radius:28px; padding:28px 26px 22px; position:relative; overflow:hidden;
+    }
+    .badge{ 
+      display:inline-flex; gap:.5rem; align-items:center; font-weight:700; letter-spacing:.3px;
+      background:rgba(124,241,200,.12); color:var(--accent);
+      border:1px solid rgba(124,241,200,.35); padding:.35rem .7rem; border-radius:999px; font-size:.88rem;
+    }
+    .badge .dot{ width:.6rem; height:.6rem; border-radius:50%; background:var(--accent); box-shadow:0 0 18px var(--accent); }
+    .title{ 
+      margin:14px 0 4px; line-height:1.1; font-weight:900; letter-spacing:.2px;
+      font-size: clamp(32px, 6.2vw, 68px);
+      display:flex; flex-wrap:wrap; gap:.35rem .6rem; align-items:baseline;
+    }
+    .title .chunk{ position:relative; display:inline-block; }
+    .title .glitch{
+      text-shadow: -2px 0 var(--cool), 2px 0 var(--hot);
+      animation: glitch 2.1s infinite ease-in-out alternate;
+    }
+    @keyframes glitch{
+      0%{ transform:translate(0,0) skew(0deg); filter:hue-rotate(0deg); }
+      50%{ transform:translate(.5px, -.5px) skew(.4deg); }
+      100%{ transform:translate(-.5px, .5px) skew(-.4deg); }
+    }
+    .subtitle{ 
+      font-size:clamp(14px, 2.4vw, 18px); opacity:.9; margin-top:8px; max-width:68ch;
+    }
+    .subtitle b{ color:var(--warn); }
+    .row{ display:flex; gap:14px; margin-top:18px; flex-wrap:wrap; }
+    button{
+      border:none; background:rgba(255,255,255,.06); color:var(--ink); cursor:pointer;
+      padding:12px 16px; border-radius:14px; font-weight:700; letter-spacing:.3px;
+      border:1px solid rgba(255,255,255,.14); transition: transform .12s ease, background .2s ease;
+    }
+    button:hover{ transform:translateY(-1px); background:rgba(255,255,255,.12) }
+    .hint{ opacity:.75; font-size:.92rem; margin-top:10px }
+    .stickers{
+      position:absolute; inset:0; pointer-events:none; overflow:hidden;
+    }
+    .sticker{
+      position:absolute; font-size: clamp(26px, 5.2vw, 56px); filter: drop-shadow(0 6px 14px rgba(0,0,0,.45));
+      rotate: var(--r, 0deg) ;
+      animation: floaty var(--t, 8s) ease-in-out infinite alternate;
+    }
+    @keyframes floaty{ 
+      0%{ transform: translateY(0px) }
+      100%{ transform: translateY(-16px) }
+    }
+    .credit{ position:absolute; right:14px; bottom:10px; opacity:.55; font-size:.85rem }
+    .sr-only{ position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="titulo">
+    <span class="badge" aria-hidden="true"><span class="dot"></span> Feira de Ciências 2025</span><h1 id="titulo" class="title" title="Verifique as fontes antes de compartilhar!">
+  <span class="chunk" id="lead"></span>
+  <span class="chunk glitch">Fake News</span>
+  <span class="chunk">Climáticas</span>
+  <span class="chunk">🌎🔎🧪</span>
+</h1>
 
+<p class="subtitle">
+  <b>Dica:</b> passe o mouse/tocar no título para um efeito divertido. Clique para trocar entre ideias de manchete.
+</p>
+
+<div class="row">
+  <button id="btnTrocar">Trocar título</button>
+  <button id="btnCopiar">Copiar para usar no meu site</button>
+</div>
+
+<p class="hint">Você pode editar a lista de ideias no JavaScript (array <code>ideias</code>) para deixar com a sua cara.</p>
+
+<div class="stickers" aria-hidden="true"></div>
